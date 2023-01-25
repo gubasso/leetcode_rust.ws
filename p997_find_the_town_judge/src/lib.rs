@@ -26,7 +26,12 @@ pub fn find_judge(n: i32, trust: Vec<Vec<i32>>) -> i32 {
     }
 
     if !can_be_not_in_a.contains(&judge) {
-        if trust.len() != 0 { judge = -1; }
+        judge = -1;
+    }
+
+    if trust.len() == 0 {
+        if n == 1 { judge = 1 }
+        else { judge = -1 };
     }
     judge
 }
@@ -65,6 +70,14 @@ mod tests {
         let trust = vec![];
         let result = find_judge(n, trust);
         assert_eq!(result, 1);
+    }
+
+    #[test]
+    fn ex_5() {
+        let n: i32 = 2;
+        let trust = vec![];
+        let result = find_judge(n, trust);
+        assert_eq!(result, -1);
     }
 
 }
