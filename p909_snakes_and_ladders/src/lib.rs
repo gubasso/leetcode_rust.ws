@@ -17,7 +17,9 @@ pub fn snakes_and_ladders(board: Vec<Vec<i32>>) -> i32 {
         } else {
             ((row + 1)*n) - node
         };
+        let node_related_to: Vec<i32> = ((node+1)..=(node+6)).collect();
         println!("node: {}", node);
+        println!("node_related_to: {:?}", node_related_to);
         println!("row: {}", row);
         println!("column: {}", column);
         let mut relationship_array: Vec<i32> = Vec::new();
