@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::cmp;
 
 pub fn snakes_and_ladders(board: Vec<Vec<i32>>) -> i32 {
     let n: i32  = board.len() as i32;
@@ -9,24 +9,62 @@ pub fn snakes_and_ladders(board: Vec<Vec<i32>>) -> i32 {
     let mut adjancency_matrix: Vec<Vec<i32>> = Vec::new();
 
     println!("n: {}", n);
+    let get_is_row_even = |&row_sequencial: &i32| -> bool {
+        0 == row_sequencial % 2
+    };
 
-    for node in unvisited_nodes.iter() {
-        let row: i32 = (node - 1) / n;
-        let column: i32 = if let 0 = row % 2 {
-            (node - (n * row)) - 1
+    let get_row_seq = |&node: &i32, &n: &i32| -> i32 {
+        (node - 1) / n
+    };
+
+    let get_coord = |&node: &i32| -> (i32, i32) {
+        let row_sequencial: i32 = get_row_seq(&node, &n);
+        let row_arr: i32 = n - 1 - row_sequencial;
+        let col_arr: i32 = if get_is_row_even(&row_sequencial) {
+            (node - (n * row_sequencial)) - 1
         } else {
-            ((row + 1)*n) - node
+            ((row_sequencial + 1)*n) - node
         };
-        let node_related_to: Vec<i32> = ((node+1)..=(node+6)).collect();
-        println!("node: {}", node);
-        println!("node_related_to: {:?}", node_related_to);
-        println!("row: {}", row);
-        println!("column: {}", column);
-        let mut relationship_array: Vec<i32> = Vec::new();
-        adjancency_matrix.push(relationship_array)
+        (row_arr, col_arr)
+    };
+
+    // TODO: solve relationship when snake/ladder
+    // 2 will be equal 15... for everyone refering to 2
+    // TODO: iterate conditionally in column with Boustrophedon order
+    let mut node: i32 = 1;
+    for b_line in board.into_iter().rev() {
+        println!("board line: {:?}", b_line);
+        let row_sequencial: i32 = get_row_seq(&node, &n);
+        let is_row_even: bool = get_is_row_even(&row_sequencial);
+        println!("row seq: {row_sequencial}, is row even: {is_row_even}");
+        let line_right_order: Vec<i32> = if is_row_even {
+            b_line.to_vec()
+        } else {
+            b_line.into_iter().rev().collect()
+        };
+        for snake_ladder_val in line_right_order.iter() {
+            println!("node: {node}. snake_ladder_val: {:?}", snake_ladder_val);
+            let (row_arr, col_arr) = get_coord(&node);
+            println!("array: [r][c]: {row_arr},{col_arr}");
+            // let mut relationship_array: Vec<i32> = vec![0; last as usize];
+            // let node_related_to: Vec<i32> = ((node+1)..=(cmp::min(node+6, last))).collect();
+            // println!("node_related_to: {:?}", node_related_to);
+            // for node_related in node_related_to.iter() {
+            //     relationship_array[(node_related - 1) as usize] = 1;
+            // }
+            // println!("relationship_array: {:?}", relationship_array);
+            // adjancency_matrix.push(relationship_array);
+            node += 1;
+        }
     }
 
-    // println!("{:?}", unvisited_nodes);
+    // for node in unvisited_nodes.iter() {
+    //     let (row, column) = get_coord(node);
+    //     println!("node: {}, coord: {},{}", node, row, column);
+    //     println!("from board n: {}", board[row as usize][column as usize]);
+    // }
+    //
+    // println!("{:?}", adjancency_matrix);
     0
 }
 
