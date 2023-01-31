@@ -30,7 +30,6 @@ pub fn snakes_and_ladders(board: Vec<Vec<i32>>) -> i32 {
 
     // TODO: solve relationship when snake/ladder
     // 2 will be equal 15... for everyone refering to 2
-    // TODO: iterate conditionally in column with Boustrophedon order
     let mut node: i32 = 1;
     for b_line in board.into_iter().rev() {
         println!("board line: {:?}", b_line);
@@ -46,14 +45,14 @@ pub fn snakes_and_ladders(board: Vec<Vec<i32>>) -> i32 {
             println!("node: {node}. snake_ladder_val: {:?}", snake_ladder_val);
             let (row_arr, col_arr) = get_coord(&node);
             println!("array: [r][c]: {row_arr},{col_arr}");
-            // let mut relationship_array: Vec<i32> = vec![0; last as usize];
-            // let node_related_to: Vec<i32> = ((node+1)..=(cmp::min(node+6, last))).collect();
-            // println!("node_related_to: {:?}", node_related_to);
+            let mut relationship_array: Vec<i32> = vec![0; last as usize];
+            let node_related_to: Vec<i32> = ((node+1)..=(cmp::min(node+6, last))).collect();
+            println!("node_related_to: {:?}", node_related_to);
             // for node_related in node_related_to.iter() {
             //     relationship_array[(node_related - 1) as usize] = 1;
             // }
-            // println!("relationship_array: {:?}", relationship_array);
-            // adjancency_matrix.push(relationship_array);
+            println!("relationship_array: {:?}", relationship_array);
+            adjancency_matrix.push(relationship_array);
             node += 1;
         }
     }
