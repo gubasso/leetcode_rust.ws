@@ -1,55 +1,76 @@
-use std::cmp;
+#[derive(Debug)]
+struct BoardItem {
+    node: i32,
+    jump_to_node: Option<i32>,
+}
 
 #[derive(Debug)]
-struct Node(i32);
+struct Board(Vec<BoardItem>);
+
+impl Board {
+    pub fn new(board: Vec<Vec<i32>>) -> Self {
+        let mut new_board: Vec<BoardItem> = Vec::new();
+        let mut node: i32 = 0;
+        for (idx, row) in board.into_iter().rev().enumerate() {
+            let is_row_even: bool = 0 == idx % 2;
+            let row_in_order = if is_row_even { row } else { row.into_iter().rev().collect() };
+            for jump_to_node in row_in_order.iter() {
+                node += 1;
+                new_board.push(BoardItem {
+                    node,
+                    jump_to_node: if *jump_to_node == -1 { None } else { Some(*jump_to_node) }
+                })
+            }
+        }
+        Self(new_board)
+    }
+}
+
 
 #[derive(Debug)]
 struct DijItem {
-    val: f64,
-    node_from: Option<Node>,
+    shortest_distance: f64,
+    node_from: Option<i32>,
 }
 
 #[derive(Debug)]
 struct Dijkstras {
     table: Vec<DijItem>,
     unvisited_nodes: Vec<i32>,
+    visited_nodes: Vec<i32>,
 }
 
 impl Dijkstras {
     pub fn new(board_side_size: i32) -> Self {
         let last_node: i32 = i32::pow(board_side_size, 2);
         let unvisited_nodes: Vec<i32> = (1..=last_node).collect();
+        let visited_nodes: Vec<i32> = Vec::new();
         let table: Vec<DijItem> = unvisited_nodes.iter().map(|i| {
-            let val = if *i == 1 { 0.0 } else { f64::INFINITY };
+            let shortest_distance = if *i == 1 { 0.0 } else { f64::INFINITY };
             return DijItem {
-                val,
+                shortest_distance,
                 node_from: None
             }
         }).collect();
         Self {
             table,
-            unvisited_nodes
+            unvisited_nodes,
+            visited_nodes
         }
     }
 }
 
-impl Iterator for Dijkstras {
-    type Item = i32;
 
-    fn next(&mut self) -> Option<Self::Item> {
-        let first = self.unvisited_nodes.first();
-
-    }
-}
+// let n: i32  = board.len() as i32;
+// let last = i32::pow(n, 2);
+// let mut unvisited_nodes: Vec<i32> = (1..=last).collect();
+// let mut visited_nodes: Vec<i32> = Vec::new();
+// let mut dijkstras_table: Vec<(i32, f64, Option<i32>)> = vec![(0,f64::INFINITY, None); last as usize];
 
 pub fn snakes_and_ladders(board: Vec<Vec<i32>>) -> i32 {
-    // let n: i32  = board.len() as i32;
-    //ok let last = i32::pow(n, 2);
-    //ok let mut unvisited_nodes: Vec<i32> = (1..=last).collect();
-    //ok let mut visited_nodes: Vec<i32> = Vec::new();
-    //ok let mut dijkstras_table: Vec<(i32, f64, Option<i32>)> = vec![(0,f64::INFINITY, None); last as usize];
-    //ok println!("created dijkstras {:?}", dijkstras_table);
-    //
+    let new_board: Board = Board::new(board);
+    println!("{:?}", new_board);
+
     // let get_is_row_even = |&row_sequencial: &i32| -> bool {
     //     0 == row_sequencial % 2
     // };
@@ -114,8 +135,8 @@ pub fn snakes_and_ladders(board: Vec<Vec<i32>>) -> i32 {
     //
     // println!("{:?}", dijkstras_table);
 
-    let dj_tb = DijkstrasTable::new(board.len() as i32);
-    println!("{:?}", dj_tb);
+    // let dj_tb = Dijkstras::new(board.len() as i32);
+    // println!("{:?}", dj_tb);
 
 
     0
