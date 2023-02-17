@@ -1,4 +1,0 @@
-Board struct
-- sequencial vector
-- each BoardItem will have all the metadata
-- the original board will be served only as input and will be iterated only one time, just to create this new board
