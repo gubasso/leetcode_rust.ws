@@ -29,47 +29,51 @@ impl Board {
 
 #[derive(Debug)]
 struct DijItem {
+    node: i32,
     shortest_distance: f64,
     node_from: Option<i32>,
 }
 
 #[derive(Debug)]
-struct Dijkstras {
-    table: Vec<DijItem>,
-    unvisited_nodes: Vec<i32>,
-    visited_nodes: Vec<i32>,
-}
+struct DijkstrasTable(Vec<DijItem>);
 
-impl Dijkstras {
-    pub fn new(board_side_size: i32) -> Self {
-        let last_node: i32 = i32::pow(board_side_size, 2);
-        let unvisited_nodes: Vec<i32> = (1..=last_node).collect();
-        let visited_nodes: Vec<i32> = Vec::new();
-        let table: Vec<DijItem> = unvisited_nodes.iter().map(|i| {
-            let shortest_distance = if *i == 1 { 0.0 } else { f64::INFINITY };
-            return DijItem {
+impl DijkstrasTable {
+    pub fn new(board: &Board) -> Self {
+        let mut table: Vec<DijItem> = Vec::new();
+        for board_item in board.0.iter() {
+            let shortest_distance = if board_item.node == 1 { 0.0 } else { f64::INFINITY };
+            table.push(DijItem {
+                node: board_item.node,
                 shortest_distance,
                 node_from: None
-            }
-        }).collect();
-        Self {
-            table,
-            unvisited_nodes,
-            visited_nodes
+            })
         }
+        Self(table)
     }
 }
 
-
-// let n: i32  = board.len() as i32;
-// let last = i32::pow(n, 2);
-// let mut unvisited_nodes: Vec<i32> = (1..=last).collect();
-// let mut visited_nodes: Vec<i32> = Vec::new();
-// let mut dijkstras_table: Vec<(i32, f64, Option<i32>)> = vec![(0,f64::INFINITY, None); last as usize];
-
 pub fn snakes_and_ladders(board: Vec<Vec<i32>>) -> i32 {
     let new_board: Board = Board::new(board);
-    println!("{:?}", new_board);
+    let mut dijkstras_table: DijkstrasTable = DijkstrasTable::new(&new_board);
+    for board_item in new_board.0.iter() {
+        // TODO max between two values... neighbours 36 max
+        let neighbours: Vec<i32> = (board_item.node+1..=board_item.node+6).collect();
+        println!("neighbours original: {:?}", neighbours);
+        for neighbour in neighbours.iter() {
+            let row_board_tb = *neighbour as usize - 1;
+            let neighbour_ok = if let Some(node) = &new_board.0[row_board_tb].jump_to_node {
+                node
+            } else {
+                neighbour
+            };
+            let board_item_neighbour_references_to = &new_board.0[*neighbour_ok as usize - 1];
+            println!("board item neighbour_ok refs to: {:?}", board_item_neighbour_references_to);
+            let row_dij_tab = *neighbour_ok as usize -1;
+            let mut dij_row = &mut dijkstras_table.0[row_dij_tab];
+            dij_row.shortest_distance = if dij_row.shortest_distance > 1.0 { 1.0 } else {dij_row.shortest_distance};
+        }
+    }
+    println!("{:?}", dijkstras_table);
 
     // let get_is_row_even = |&row_sequencial: &i32| -> bool {
     //     0 == row_sequencial % 2
