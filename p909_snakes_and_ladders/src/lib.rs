@@ -1,3 +1,5 @@
+use std::cmp;
+
 #[derive(Debug)]
 struct BoardItem {
     node: i32,
@@ -54,26 +56,31 @@ impl DijkstrasTable {
 
 pub fn snakes_and_ladders(board: Vec<Vec<i32>>) -> i32 {
     let new_board: Board = Board::new(board);
+    // println!("new_board {:?}", new_board);
     let mut dijkstras_table: DijkstrasTable = DijkstrasTable::new(&new_board);
+    println!("dijkstras_table {:?}", dijkstras_table);
     for board_item in new_board.0.iter() {
         // TODO max between two values... neighbours 36 max
-        let neighbours: Vec<i32> = (board_item.node+1..=board_item.node+6).collect();
+        println!("board_item: {:?}", board_item);
+        let min_neighbour: i32 = cmp::min(board_item.node+1, new_board.0.len() as i32);
+        let max_neighbour: i32 = cmp::min(board_item.node+6, new_board.0.len() as i32);
+        let neighbours: Vec<i32> = if min_neighbour == board_item.node { vec![] } else { (min_neighbour..=max_neighbour).collect() };
         println!("neighbours original: {:?}", neighbours);
         for neighbour in neighbours.iter() {
-            let row_board_tb = *neighbour as usize - 1;
-            let neighbour_ok = if let Some(node) = &new_board.0[row_board_tb].jump_to_node {
-                node
-            } else {
-                neighbour
-            };
-            let board_item_neighbour_references_to = &new_board.0[*neighbour_ok as usize - 1];
-            println!("board item neighbour_ok refs to: {:?}", board_item_neighbour_references_to);
-            let row_dij_tab = *neighbour_ok as usize -1;
-            let mut dij_row = &mut dijkstras_table.0[row_dij_tab];
-            dij_row.shortest_distance = if dij_row.shortest_distance > 1.0 { 1.0 } else {dij_row.shortest_distance};
+            // let row_board_tb = *neighbour as usize - 1;
+            // let neighbour_ok = if let Some(node) = &new_board.0[row_board_tb].jump_to_node {
+            //     node
+            // } else {
+            //     neighbour
+            // };
+            // let board_item_neighbour_references_to = &new_board.0[*neighbour_ok as usize - 1];
+            // // println!("board item neighbour_ok refs to: {:?}", board_item_neighbour_references_to);
+            // let row_dij_tab = *neighbour_ok as usize -1;
+            // let mut dij_row = &mut dijkstras_table.0[row_dij_tab];
+            // dij_row.shortest_distance = if dij_row.shortest_distance > 1.0 { 1.0 } else {dij_row.shortest_distance};
         }
     }
-    println!("{:?}", dijkstras_table);
+    // println!("{:?}", dijkstras_table);
 
     // let get_is_row_even = |&row_sequencial: &i32| -> bool {
     //     0 == row_sequencial % 2
