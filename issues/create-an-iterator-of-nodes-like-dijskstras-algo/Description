@@ -1,0 +1,7 @@
+- KISS
+- create a dijkstras table, thats it...
+- create a unvisited_nodes, thats it..
+- create an iterator (next) for unvisited_nodes
+- take the unvisited_nodes references to access &mut dijkstras_table, and change the value there
+
+

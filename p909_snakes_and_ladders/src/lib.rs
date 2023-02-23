@@ -1,4 +1,14 @@
 use std::cmp;
+use std::cmp::Ordering;
+
+fn cmp_f64_dij_item(a: &DijItem, b: &DijItem) -> Ordering {
+    if a.shortest_distance < b.shortest_distance {
+        return Ordering::Less;
+    } else if a.shortest_distance > b.shortest_distance {
+        return Ordering::Greater;
+    }
+    return Ordering::Equal;
+}
 
 #[derive(Debug)]
 struct BoardItem {
@@ -29,7 +39,7 @@ impl Board {
 }
 
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 struct DijItem {
     node: i32,
     shortest_distance: f64,
@@ -37,49 +47,88 @@ struct DijItem {
 }
 
 #[derive(Debug)]
-struct DijkstrasTable(Vec<DijItem>);
+struct Dijkstras{
+    table: Vec<DijItem>,
+    unvisited_nodes: Vec<DijItem>,
+    visited_nodes: Vec<DijItem>,
+}
 
-impl DijkstrasTable {
+impl Dijkstras {
     pub fn new(board: &Board) -> Self {
         let mut table: Vec<DijItem> = Vec::new();
+        let mut unvisited_nodes: Vec<DijItem> = Vec::new();
+        let visited_nodes: Vec<DijItem> = Vec::new();
         for board_item in board.0.iter() {
             let shortest_distance = if board_item.node == 1 { 0.0 } else { f64::INFINITY };
-            table.push(DijItem {
+            let dij_item = DijItem {
                 node: board_item.node,
                 shortest_distance,
                 node_from: None
-            })
+            };
+            table.push(dij_item.clone());
+            unvisited_nodes.push(dij_item);
         }
-        Self(table)
+        Self{
+            table,
+            unvisited_nodes,
+            visited_nodes,
+        }
+    }
+
+    fn traverse(&mut self, f: impl Fn(&DijItem)) {
+        self.unvisited_nodes.sort_by(cmp_f64_dij_item);
+        let curr_node = self.unvisited_nodes.first().cloned();
+        self.unvisited_nodes.remove(0);
+        if let Some(ref node) = curr_node {
+            self.visited_nodes.push(node.clone())
+        };
+    }
+}
+
+impl Iterator for Dijkstras {
+    type Item = DijItem;
+    fn next(&mut self) -> Option<Self::Item> {
+        self.unvisited_nodes.sort_by(cmp_f64_dij_item);
+        let curr_node = self.unvisited_nodes.first().cloned();
+        self.unvisited_nodes.remove(0);
+        if let Some(ref node) = curr_node {
+            self.visited_nodes.push(node.clone())
+        };
+        curr_node
     }
 }
 
 pub fn snakes_and_ladders(board: Vec<Vec<i32>>) -> i32 {
     let new_board: Board = Board::new(board);
     // println!("new_board {:?}", new_board);
-    let mut dijkstras_table: DijkstrasTable = DijkstrasTable::new(&new_board);
+    let mut dijkstras_table: Dijkstras = Dijkstras::new(&new_board);
     println!("dijkstras_table {:?}", dijkstras_table);
-    for board_item in new_board.0.iter() {
-        // TODO max between two values... neighbours 36 max
-        println!("board_item: {:?}", board_item);
-        let min_neighbour: i32 = cmp::min(board_item.node+1, new_board.0.len() as i32);
-        let max_neighbour: i32 = cmp::min(board_item.node+6, new_board.0.len() as i32);
-        let neighbours: Vec<i32> = if min_neighbour == board_item.node { vec![] } else { (min_neighbour..=max_neighbour).collect() };
-        println!("neighbours original: {:?}", neighbours);
+    for node_dij in dijkstras_table {
+        println!("node_dij: {:?}", node_dij);
+        let min_neighbour: i32 = cmp::min(node_dij.node+1, new_board.0.len() as i32);
+        let max_neighbour: i32 = cmp::min(node_dij.node+6, new_board.0.len() as i32);
+        let neighbours: Vec<i32> = if min_neighbour == node_dij.node { vec![] } else { (min_neighbour..=max_neighbour).collect() };
         for neighbour in neighbours.iter() {
-            // let row_board_tb = *neighbour as usize - 1;
-            // let neighbour_ok = if let Some(node) = &new_board.0[row_board_tb].jump_to_node {
-            //     node
-            // } else {
-            //     neighbour
-            // };
-            // let board_item_neighbour_references_to = &new_board.0[*neighbour_ok as usize - 1];
-            // // println!("board item neighbour_ok refs to: {:?}", board_item_neighbour_references_to);
-            // let row_dij_tab = *neighbour_ok as usize -1;
-            // let mut dij_row = &mut dijkstras_table.0[row_dij_tab];
+            let row_board_tb = *neighbour as usize - 1;
+            let neighbour_ok = if let Some(node) = &new_board.0[row_board_tb].jump_to_node {
+                node
+            } else {
+                neighbour
+            };
+            let default_cost: f64 = 1.0;
+            let board_item_neighbour_references_to = &new_board.0[*neighbour_ok as usize - 1];
+            println!("board item neighbour_ok refs to: {:?}", board_item_neighbour_references_to);
+            let row_dij_tab = *neighbour_ok as usize -1;
+            let mut dij_row_neighbour = &mut dijkstras_table.table[row_dij_tab];
+            dij_row_neighbour.shortest_distance = if default_cost < dij_row_neighbour.shortest_distance { default_cost } else { dij_row_neighbour.shortest_distance };
+            // dij_row_neighbour.node_from = Some(node_dij.node);
+            // println!("dij_row_neighbour: {:?}", dij_row_neighbour);
             // dij_row.shortest_distance = if dij_row.shortest_distance > 1.0 { 1.0 } else {dij_row.shortest_distance};
         }
+
     }
+    // for board_item in new_board.0.iter() {
+    // }
     // println!("{:?}", dijkstras_table);
 
     // let get_is_row_even = |&row_sequencial: &i32| -> bool {
