@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::collections::{HashMap, VecDeque};
 use std::cmp;
 use std::cmp::Ordering;
 
@@ -62,7 +62,7 @@ fn cmp_f64_dij_item(a: &DijItem, b: &DijItem) -> Ordering {
     } else if a.shortest_distance > b.shortest_distance {
         return Ordering::Greater;
     }
-    return Ordering::Equal;
+    Ordering::Equal
 }
 
 #[derive(Debug)]
@@ -75,13 +75,15 @@ impl UnvisitedNodes {
 }
 
 fn get_next_node(un_vis: &mut UnvisitedNodes) -> Option<DijItem> {
-    let mut un_vis_vec: Vec<DijItem> = Vec::new();
+    let mut un_vis_vec: VecDeque<DijItem> = VecDeque::new();
     for (_k, v) in un_vis.0.iter() {
-        un_vis_vec.push(v.clone());
+        un_vis_vec.push_back(v.clone());
     }
-    un_vis_vec.sort_by(cmp_f64_dij_item);
-    let next_node = un_vis_vec.remove(0);
-    un_vis.0.remove(&next_node.node).clone()
+    un_vis_vec.make_contiguous().sort_by(cmp_f64_dij_item);
+    let next_node = un_vis_vec.pop_front();
+    if let Some(next_node) = next_node {
+        un_vis.0.remove(&next_node.node)
+    } else { None }
 }
 
 pub fn snakes_and_ladders(board: Vec<Vec<i32>>) -> i32 {
@@ -94,7 +96,8 @@ pub fn snakes_and_ladders(board: Vec<Vec<i32>>) -> i32 {
     let mut next_node_copy = get_next_node(&mut unvisited_nodes);
     // println!("unvisited_nodes {:?}", unvisited_nodes);
     while let Some(ref node_dij) = next_node_copy {
-        println!("\n### THIS NODE {:?}\n", node_dij);
+        // println!("\n### THIS NODE {:?}\n", node_dij);
+        let curr_distance: f64 = node_dij.shortest_distance;
         let min_neighbour: i32 = cmp::min(node_dij.node+1, new_board.0.len() as i32);
         let max_neighbour: i32 = cmp::min(node_dij.node+6, new_board.0.len() as i32);
         let neighbours: Vec<i32> = if min_neighbour == node_dij.node { vec![] } else { (min_neighbour..=max_neighbour).collect() };
@@ -105,26 +108,45 @@ pub fn snakes_and_ladders(board: Vec<Vec<i32>>) -> i32 {
             } else {
                 neighbour
             };
-            let default_cost: f64 = 1.0;
-            let board_item_neighbour_references_to = &new_board.0[*neighbour_ok as usize - 1];
-            println!("board item neighbour_ok refs to: {:?}", board_item_neighbour_references_to);
+            let total_cost_from_start: f64 = 1.0 + curr_distance;
 
             if let Some(dij_row_neighbour) = dijkstras_table.0.get_mut(neighbour_ok) {
-                dij_row_neighbour.shortest_distance = if default_cost < dij_row_neighbour.shortest_distance { default_cost } else { dij_row_neighbour.shortest_distance };
-                dij_row_neighbour.node_from = Some(node_dij.node);
-                dij_row_neighbour.shortest_distance = if dij_row_neighbour.shortest_distance > 1.0 { 1.0 } else {dij_row_neighbour.shortest_distance};
                 if let Some(_val) = unvisited_nodes.0.get(neighbour_ok) {
+
+                    if total_cost_from_start < dij_row_neighbour.shortest_distance {
+                        dij_row_neighbour.shortest_distance = total_cost_from_start;
+                        dij_row_neighbour.node_from = Some(node_dij.node);
+                    }
+
                     unvisited_nodes.0.insert(*neighbour_ok, dij_row_neighbour.clone());
+                    // println!("dij_row_neighbour: {:?}", dijkstras_table.0.get(neighbour_ok));
                 }
             }
-            println!("dij_row_neighbour: {:?}", dijkstras_table.0.get(neighbour_ok));
         }
+        // if node_dij.node == 2 { break; };
         next_node_copy = get_next_node(&mut unvisited_nodes);
         count_interations += 1;
-        if count_interations == 1 {break;}
+        // if count_interations == 2 {break;}
     }
 
-    0
+    // println!("dijkstras_table: {:?}", dijkstras_table);
+    // println!("unvisited_nodes: {:?}", unvisited_nodes);
+    // println!("count_interations: {}", count_interations);
+    // println!("last node: {:?}", dijkstras_table.0.get(&count_interations));
+
+    let mut node_optimal = count_interations;
+    // let mut total_cost = 0.0;
+    let mut total_moves = -1;
+    while let Some(node) = dijkstras_table.0.get(&node_optimal) {
+        // println!("node: {:?}", node);
+        node_optimal = if let Some(nd_opt) = node.node_from { nd_opt } else { 0 };
+        // total_cost += node.shortest_distance;
+        total_moves += 1;
+        // println!("node_optimal: {:?}", node_optimal);
+    }
+    // println!("total_cost: {:?}", total_cost);
+    // println!("total_moves: {:?}", total_moves);
+    if total_moves == 0 { -1 } else { total_moves }
 }
 
 #[cfg(test)]
@@ -135,6 +157,14 @@ mod tests {
     fn case_1() {
         let board = vec![vec![-1,-1,-1,-1,-1,-1],vec![-1,-1,-1,-1,-1,-1],vec![-1,-1,-1,-1,-1,-1],vec![-1,35,-1,-1,13,-1],vec![-1,-1,-1,-1,-1,-1],vec![-1,15,-1,-1,-1,-1]];
         let result = snakes_and_ladders(board);
-        assert_eq!(result, -1);
+        assert_eq!(result, 4);
     }
+
+    #[test]
+    fn case_2() {
+        let board = vec![vec![-1,-1], vec![-1,3]];
+        let result = snakes_and_ladders(board);
+        assert_eq!(result, 1);
+    }
+
 }
