@@ -1,0 +1,10 @@
+# implement KMP algo
+
+[Knuth–Morris–Pratt KMP - Find the Index of the First Occurrence in a String - Leetcode 28 - Python](https://www.youtube.com/watch?v=JoF0Z7nVSrA)
+
+- implement step by step, understanding everything
+- separate lps_val from j coordinate to understand better
+
+- [ ] update this repo docs
+- [ ] update docs-n-notes
+
