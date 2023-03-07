@@ -1,9 +1,9 @@
 [workspace]
 
 members = [
-    "runner",
     "p13_roman_to_integer",
     "p997_find_the_town_judge",
     "p909_snakes_and_ladders",
     "p28_find_the_index_of_the_first_occurrence_in_a_string",
+    "p2187_minimum_time_to_complete_trips"
 ]
