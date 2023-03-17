@@ -1,30 +1,6 @@
-#[derive(Debug)]
-struct Fraction {
-    n: i32,
-    d: i32
-}
-
-impl Fraction {
-    pub fn new(n: i32, d: i32) -> Self {
-        Self {
-            n,
-            d
-        }
-    }
-}
-
-struct InvertedFractionVec(Vec<Fraction>);
-
-impl InvertedFractionVec {
-    pub fn new(v: Vec<i32>) -> Self {
-        // Self(v.into_iter().map(|e| Fraction::new(1,)))
-    }
-}
-
-
-fn lcm(n1: i32, n2: i32) -> i32 {
-    let higher: i32 = if n1 > n2 { n1 } else { n2 };
-    let mut val: i32 = higher;
+fn get_lcm(n1: u64, n2: u64) -> u64 {
+    let higher: u64 = if n1 > n2 { n1 } else { n2 };
+    let mut val: u64 = higher;
     loop {
         if val % n1 == 0 && val % n2 == 0 {
             return val;
@@ -34,15 +10,24 @@ fn lcm(n1: i32, n2: i32) -> i32 {
     }
 }
 
+fn lcm_arr(arr: &Vec<i32>) -> u64 {
+    if arr.len() == 1 { return 1; }
+    let mut lcm: u64 = arr[1] as u64;
+    for (i, e) in arr.iter().enumerate() {
+        if i == 0 { continue; };
+        lcm = get_lcm(lcm, *e as u64);
+    }
+    lcm
+}
+
 pub fn minimum_time(time: Vec<i32>, total_trips: i32) -> i64 {
     if time.len() > usize::pow(10, 5) { return -1; };
     if total_trips > i32::pow(10, 7) { return -1; };
     let mut total_temp: f64 = 0.0;
     let mut t: i64 = 0;
 
-    let temp = lcm(17, 11);
-    println!("lcm: {temp}");
-
+    let temp = lcm_arr(&time);
+    println!("lcm_arr: {temp}");
 
     // let sum_each_t = time.iter().fold(0 as f64, |acc, x| acc as f64 + 1 as f64 / *x as f64);
     //
@@ -63,6 +48,7 @@ mod tests {
         let result = minimum_time(vec![1,2,3], 5);
         assert_eq!(result, 3);
     }
+
 
     #[test]
     fn case_2() {

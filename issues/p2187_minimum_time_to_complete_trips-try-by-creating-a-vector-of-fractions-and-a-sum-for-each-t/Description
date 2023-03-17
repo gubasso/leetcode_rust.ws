@@ -1,0 +1,2 @@
+- change all numb types to i32 again
+- implement another lcm method (appart from multiplication loop) to not overflow i32 type
