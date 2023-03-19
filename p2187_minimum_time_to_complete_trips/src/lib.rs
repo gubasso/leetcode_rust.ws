@@ -1,23 +1,41 @@
-fn get_lcm(n1: u64, n2: u64) -> u64 {
-    let higher: u64 = if n1 > n2 { n1 } else { n2 };
-    let mut val: u64 = higher;
-    loop {
-        if val % n1 == 0 && val % n2 == 0 {
-            return val;
-        } else {
-            val += higher;
-        }
-    }
+fn get_gcd(a: i32, b: i32) -> i32 {
+    if a == 0 { return b; }
+    get_gcd(b%a, a)
 }
 
-fn lcm_arr(arr: &Vec<i32>) -> u64 {
-    if arr.len() == 1 { return 1; }
-    let mut lcm: u64 = arr[1] as u64;
+fn get_gcd_arr(arr: &Vec<i32>) -> i32 {
+    let mut gcd: i32 = arr[0];
+    if arr.len() == 1 { return gcd }
+    for (i, e) in arr.iter().enumerate() {
+        if i == 0 { continue; }
+        gcd = get_gcd(gcd, *e);
+        if gcd == 1 { break; }
+    }
+    gcd
+}
+
+fn get_lcm(a: i32, b: i32) -> i32 {
+    a * b / get_gcd(a, b)
+}
+
+fn get_lcm_arr(arr: &Vec<i32>) -> i32 {
+    let mut lcm: i32 = arr[0];
+    if arr.len() == 1 { return lcm; }
     for (i, e) in arr.iter().enumerate() {
         if i == 0 { continue; };
-        lcm = get_lcm(lcm, *e as u64);
+        lcm = get_lcm(lcm, *e);
     }
     lcm
+}
+
+fn sum_inv_arr(arr: &Vec<i32>) -> f64 {
+    let lcm_arr = get_lcm_arr(arr);
+    let mut multiplied_arr: Vec<i32> = Vec::new();
+    for e in arr {
+        multiplied_arr.push(lcm_arr / e);
+    }
+    let sum_numerators = multiplied_arr.iter().fold(0, |acc, x| acc + x);
+    sum_numerators as f64 / lcm_arr as f64
 }
 
 pub fn minimum_time(time: Vec<i32>, total_trips: i32) -> i64 {
@@ -26,11 +44,13 @@ pub fn minimum_time(time: Vec<i32>, total_trips: i32) -> i64 {
     let mut total_temp: f64 = 0.0;
     let mut t: i64 = 0;
 
-    let temp = lcm_arr(&time);
-    println!("lcm_arr: {temp}");
+    let lcm_arr = get_lcm_arr(&time);
+    println!("lcm_arr: {lcm_arr}");
 
-    // let sum_each_t = time.iter().fold(0 as f64, |acc, x| acc as f64 + 1 as f64 / *x as f64);
-    //
+
+    // let sum_each_t = sum_inv_arr(&time) as f64;
+    // println!("sum_each_t: {sum_each_t}");
+
     // while total_temp < total_trips as f64 {
     //     t += 1;
     //     total_temp += sum_each_t;
