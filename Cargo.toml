@@ -8,4 +8,5 @@ members = [
     "p2187_minimum_time_to_complete_trips",
     "p2235_add_two_integers",
     "p2236_root_equals_sum_of_children",
+    "p226_invert_binary_tree",
 ]

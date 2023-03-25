@@ -1,5 +1,18 @@
 # leetcode rust workspace
 
+<!-- toc GitLab -->
+
+* [General](#general)
+* [p2236_root_equals_sum_of_children](#p2236_root_equals_sum_of_children)
+* [p28_find_the_index_of_the_first_occurrence_in_a_string](#p28_find_the_index_of_the_first_occurrence_in_a_string)
+* [p909_snakes_and_ladders](#p909_snakes_and_ladders)
+* [p997_find_the_town_judge](#p997_find_the_town_judge)
+* [References:](#references)
+
+<!-- toc -->
+
+## General
+
 issue tracker / todo list: https://github.com/driusan/bug
 
 test command:
@@ -7,6 +20,10 @@ test command:
 clrm; cargo test -p [package] -- --test-threads 1
 clrm; cargo clippy --package [package]
 ```
+
+## p2236_root_equals_sum_of_children
+
+- implemented conversion of vector to treenode[^1]
 
 ## p28_find_the_index_of_the_first_occurrence_in_a_string
 [Knuth-Morris-Pratt (KMP) algorithm | String Matching Algorithm | Substring Search](https://www.youtube.com/watch?v=4jY57Ehc14Y)
@@ -18,3 +35,7 @@ clrm; cargo clippy --package [package]
 
 ## p997_find_the_town_judge
 > graph
+
+## References:
+
+[^1]: [Construct a complete binary tree from given array in level order fashion](https://www.geeksforgeeks.org/construct-complete-binary-tree-given-array/)
