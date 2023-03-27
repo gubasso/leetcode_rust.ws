@@ -55,18 +55,23 @@ fn convert_tree_node_to_vec(root: &Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
     vec
 }
 
-pub fn invert_tree(root: &Option<Rc<RefCell<TreeNode>>>) -> Option<Rc<RefCell<TreeNode>>> {
-    if *root == None { return None; };
-    let binding = root.as_ref().unwrap().clone();
-    let mut node = binding.borrow_mut();
+struct Solution;
 
-    let left_inverted = invert_tree(&node.right);
-    let right_inverted = invert_tree(&node.left);
-    node.right = right_inverted;
-    node.left = left_inverted;
+impl Solution {
+    pub fn invert_tree(root: Option<Rc<RefCell<TreeNode>>>) -> Option<Rc<RefCell<TreeNode>>> {
+        if root == None { return None; };
+        let binding = root.as_ref().unwrap().clone();
+        let mut node = binding.borrow_mut();
 
-    Some(Rc::clone(&binding))
+        let left_inverted = Self::invert_tree(node.right.clone());
+        let right_inverted = Self::invert_tree(node.left.clone());
+        node.right = right_inverted;
+        node.left = left_inverted;
+
+        Some(Rc::clone(&binding))
+    }
 }
+
 
 #[cfg(test)]
 mod tests {
@@ -78,7 +83,7 @@ mod tests {
         let vec_input = vec![4,2,7,1,3,6,9];
         let vec_answer = vec![4,7,2,9,6,3,1];
         let tree_input = convert_vec_to_tree_node(&vec_input, 0);
-        let inv_tree_input = invert_tree(&tree_input);
+        let inv_tree_input = Solution::invert_tree(tree_input);
         let inv_vec = convert_tree_node_to_vec(&inv_tree_input);
         assert_eq!(inv_vec, vec_answer);
     }
@@ -89,7 +94,7 @@ mod tests {
         let vec_input = vec![2,1,3];
         let vec_answer = vec![2,3,1];
         let tree_input = convert_vec_to_tree_node(&vec_input, 0);
-        let inv_tree_input = invert_tree(&tree_input);
+        let inv_tree_input = Solution::invert_tree(tree_input);
         let inv_vec = convert_tree_node_to_vec(&inv_tree_input);
         assert_eq!(inv_vec, vec_answer);
     }
@@ -99,7 +104,7 @@ mod tests {
         let vec_input = vec![];
         let vec_answer = vec![];
         let tree_input = convert_vec_to_tree_node(&vec_input, 0);
-        let inv_tree_input = invert_tree(&tree_input);
+        let inv_tree_input = Solution::invert_tree(tree_input);
         let inv_vec = convert_tree_node_to_vec(&inv_tree_input);
         assert_eq!(inv_vec, vec_answer);
     }
