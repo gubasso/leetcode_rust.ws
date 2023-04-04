@@ -1,5 +1,19 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
+use std::cmp;
+
+struct Solution;
+
+impl Solution {
+    pub fn maximum_wealth(accounts: Vec<Vec<i32>>) -> i32 {
+        let mut max_wealth: i32 = 0;
+        for client in accounts {
+            let mut client_wealth: i32 = 0;
+            for acc_wealth in client {
+                client_wealth += acc_wealth;
+            }
+            max_wealth = cmp::max(max_wealth, client_wealth);
+        }
+        max_wealth
+    }
 }
 
 #[cfg(test)]
@@ -8,7 +22,8 @@ mod tests {
 
     #[test]
     fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+        let result = Solution::maximum_wealth(vec![vec![1,2,3],vec![3,2,1]]);
+        assert_eq!(result, 6);
     }
+
 }
