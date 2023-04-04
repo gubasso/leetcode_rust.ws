@@ -21,9 +21,21 @@ mod tests {
     use super::*;
 
     #[test]
-    fn it_works() {
+    fn t1() {
         let result = Solution::maximum_wealth(vec![vec![1,2,3],vec![3,2,1]]);
         assert_eq!(result, 6);
+    }
+
+    #[test]
+    fn t2() {
+        let result = Solution::maximum_wealth(vec![vec![1,5],vec![7,3],vec![3,5]]);
+        assert_eq!(result, 10);
+    }
+
+    #[test]
+    fn t3() {
+        let result = Solution::maximum_wealth(vec![vec![2,8,7],vec![7,1,3],vec![1,9,5]]);
+        assert_eq!(result, 17);
     }
 
 }
