@@ -11,4 +11,5 @@ members = [
     "p226_invert_binary_tree",
     "p1480_running_sum_of_1d_array",
     "p1672_richest_customer_wealth",
+    "p412_fizz_buzz",
 ]
