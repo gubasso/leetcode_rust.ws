@@ -13,4 +13,6 @@ members = [
     "p1672_richest_customer_wealth",
     "p412_fizz_buzz",
     "p1342_number_of_steps_to_reduce_a_number_to_zero",
+    "p876_middle_of_the_linked_list",
+    "zrc_manipulation",
 ]
