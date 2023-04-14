@@ -1,0 +1,40 @@
+- I have to access the source list from the top to inside
+- and the new list from inside to the top (don't know how to do that)
+
+- [x] rust "too many linked lists"
+    - rust_study.ws/lists/README.md
+- [] refactor functions and list manipulations based on what I learned in too many linked lists
+- [] watch videos about liked lists
+
+```
+func(level, node) -> node {
+    if (  ) {
+
+    } else {
+
+    }
+}
+
+func(3, node_5) -> node_3;
+
+// iterate over linked_list;
+
+list {
+    val: 5,
+    next: list {
+        val: 4,
+        next: ...
+    }
+}
+
+
+iterate(list_in, stop) {
+    new_list = list::new();
+    list = list_in.clone();
+    loop {
+        new_list = list;
+    }
+}
+
+
+```
