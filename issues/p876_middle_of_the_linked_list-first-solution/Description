@@ -1,10 +1,37 @@
 - I have to access the source list from the top to inside
 - and the new list from inside to the top (don't know how to do that)
 
+- [] refactor functions and list manipulations based on what I learned in too many linked lists
+
+```
+list {
+    val: 5,
+    next: Some(list {
+        val: 4,
+        next: ...
+    })
+}
+
+mem::replace(&mut self.next, None)
+
+result = list {
+    val: 5,
+    next: None
+}
+
+`Some(next_node)`
+node = list {
+    val: 4,
+    next: ...
+}
+*self = *next_node
+
+```
+
+
 - [x] rust "too many linked lists"
     - rust_study.ws/lists/README.md
-- [] refactor functions and list manipulations based on what I learned in too many linked lists
-- [] watch videos about liked lists
+- [x] watch videos about liked lists
 
 ```
 func(level, node) -> node {
