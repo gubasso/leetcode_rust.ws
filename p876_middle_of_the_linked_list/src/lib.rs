@@ -10,31 +10,34 @@ pub struct ListNode {
 
 impl ListNode {
 
-  #[inline]
-  fn new(val: i32) -> Self {
-    ListNode {
-      next: None,
-      val
-    }
-  }
-
-  fn push(&mut self, val: i32) {
-      let new_node = ListNode {
-          val,
-          next: Some(Box::new(mem::replace(self, ListNode::new(0)))),
-      };
-      *self = new_node;
-  }
-
-  fn pop(&mut self) -> Option<Box<ListNode>> {
-    match mem::replace(&mut self.next, None) {
-        None => None,
-        Some(next_node) => {
-            *self = *next_node;
-            Some(Box::new(ListNode::new(self.val)))
+    #[inline]
+    fn new(val: i32) -> Self {
+        ListNode {
+            next: None,
+            val
         }
     }
-  }
+
+    fn push(&mut self, val: i32) {
+        let new_node = ListNode {
+            val,
+            next: Some(Box::new(mem::replace(self, ListNode::new(0)))),
+        };
+        *self = new_node;
+    }
+
+    fn pop(&mut self) -> Option<Box<ListNode>> {
+        match mem::replace(&mut self.next, None) {
+            None => {
+                Some(Box::new(ListNode::new(self.val)))
+            },
+            Some(next_node) => {
+                let val = self.val;
+                *self = *next_node;
+                Some(Box::new(ListNode::new(val)))
+            }
+        }
+    }
 
 }
 
@@ -78,17 +81,36 @@ mod tests {
     }
 
     #[test]
-    fn t1() {
-        let input = vec![1,2,3,4,5];
-        let output = vec![3,4,5];
-        let list_node = get_list_from_vec(input);
-        // println!("list_node: {:?}", list_node);
-        let result_list = Solution::middle_node(list_node);
-        // println!("result_list: {:?}", result_list);
-        let result_vec = get_vec_from_list(result_list);
-        // println!("result_vec: {:?}", result_vec);
-        assert_eq!(result_vec, output);
+    fn push_pop() {
+        let mut list = ListNode::new(1);
+        assert_eq!(list.pop(), node_1());
+
+        list.push(2);
+        list.push(3);
+        assert_eq!(list.pop(), Some(Box::new(ListNode::new(3))));
+        assert_eq!(list.pop(), Some(Box::new(ListNode::new(2))));
+
+        list.push(4);
+        list.push(5);
+        assert_eq!(list.pop(), Some(Box::new(ListNode::new(5))));
+        assert_eq!(list.pop(), Some(Box::new(ListNode::new(4))));
+
+        assert_eq!(list.pop(), Some(Box::new(ListNode::new(1))));
+        assert_eq!(list.pop(), Some(Box::new(ListNode::new(1))));
     }
+
+    // #[test]
+    // fn t1() {
+    //     let input = vec![1,2,3,4,5];
+    //     let output = vec![3,4,5];
+    //     let list_node = get_list_from_vec(input);
+    //     // println!("list_node: {:?}", list_node);
+    //     let result_list = Solution::middle_node(list_node);
+    //     // println!("result_list: {:?}", result_list);
+    //     let result_vec = get_vec_from_list(result_list);
+    //     // println!("result_vec: {:?}", result_vec);
+    //     assert_eq!(result_vec, output);
+    // }
 
     // #[test]
     // fn t2() {

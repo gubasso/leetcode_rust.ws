@@ -26,6 +26,20 @@ node = list {
 }
 *self = *next_node
 
+---
+
+if list {
+    val: 1,
+    next: None
+}
+
+mem::replace(&mut self.next, None)
+
+result = list {
+    val: 1,
+    next: None
+}
+
 ```
 
 
