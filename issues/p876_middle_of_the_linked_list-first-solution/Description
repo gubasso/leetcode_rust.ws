@@ -1,9 +1,9 @@
 - I have to access the source list from the top to inside
 - and the new list from inside to the top (don't know how to do that)
 
-- [] refactor functions and list manipulations based on what I learned in too many linked lists
+- [x] refactor functions and list manipulations based on what I learned in too many linked lists
     - [x] implement iterators: https://rust-unofficial.github.io/too-many-lists/second-into-iter.html
-    - [] reverse iterators (traverse):
+    - [x] reverse iterators (traverse):
         - https://javarevisited.blogspot.com/2017/03/how-to-reverse-linked-list-in-java-using-iteration-and-recursion.html
         - https://www.java67.com/2016/07/how-to-reverse-singly-linked-list-in-java-example.html
     - [x] implement peek: https://rust-unofficial.github.io/too-many-lists/second-peek.html
