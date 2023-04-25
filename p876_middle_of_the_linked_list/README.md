@@ -2,6 +2,7 @@
 
 <!-- toc GFM -->
 
++ [recursive node(n)](#recursive-noden)
 + [recursive node_until_n](#recursive-node_until_n)
     * [simple cases](#simple-cases)
 + [recursive structure](#recursive-structure)
@@ -10,6 +11,47 @@
     * [simple cases:](#simple-cases-2)
 
 <!-- toc -->
+
+# recursive node(n)
+
+```
+
+node(1) -> List { 
+    val: 1,
+    next: None,
+}
+
+node(2) -> List { 
+    val: 1,
+    next: List {
+        val: 2,
+        next: None,
+    },
+}
+
+node(3) -> List { 
+    val: 1,
+    next: List {
+        val: 2,
+        next: List {
+            val: 3,
+            next: None,
+        },
+    },
+}
+
+node(n) -> List {
+    val: 1,
+    next: ... List {
+        val: n,
+        next: None,
+    }
+}
+
+
+```
+
+
 
 # recursive node_until_n
 
