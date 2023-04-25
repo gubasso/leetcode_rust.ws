@@ -58,16 +58,9 @@ impl Solution {
         let mut middle = &head;
         let mut end = &head;
 
-        loop {
-            if let Some(node) = end {
-                end = &node.next;
-            };
-            if end == &None { break; };
-            if let Some(node) = end {
-                end = &node.next;
-            };
+        while end.is_some() && end.as_ref().unwrap().next.is_some() {
             middle = &middle.as_ref().unwrap().next;
-            if end == &None { break; };
+            end = &end.as_ref().unwrap().next.as_ref().unwrap().next;
         }
 
         middle.clone()
