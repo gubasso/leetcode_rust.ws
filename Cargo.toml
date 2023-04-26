@@ -15,4 +15,5 @@ members = [
     "p1342_number_of_steps_to_reduce_a_number_to_zero",
     "p876_middle_of_the_linked_list",
     "p383_ransom_note",
+    "p1_two_sum",
 ]
