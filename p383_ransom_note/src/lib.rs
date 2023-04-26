@@ -4,25 +4,17 @@ struct Solution;
 
 impl Solution {
     pub fn can_construct(ransom_note: String, magazine: String) -> bool {
-
+        if ransom_note.len() > magazine.len() { return false; };
         let mut dict: HashMap<char, i32> = HashMap::new();
 
         for m in magazine.chars() {
-            if let Some(total) = dict.get_mut(&m) {
-                *total += 1;
-            } else {
-                dict.insert(m, 1);
-            }
+            dict.entry(m).and_modify(|counter| *counter += 1).or_insert(1);
         }
 
         for r in ransom_note.chars() {
-            if let Some(total) = dict.get_mut(&r) {
-                if *total == 0 {
-                    return false;
-                }
-                *total -= 1;
-            } else {
-                return false;
+            match dict.get_mut(&r) {
+                Some(n) if *n > 0 => { *n -= 1; }
+                _ => { return false; }
             }
         }
         true
