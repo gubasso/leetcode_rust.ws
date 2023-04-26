@@ -1,5 +1,0 @@
-
-- [x] refactor using the top voted rust solution with hashmap
-    - https://leetcode.com/problems/ransom-note/solutions/2707491/rust-solution-using-hashmap-s-entry-api/
-- [x] my implementation was exactly the same as the most upvoted leetcode solution
-    - https://leetcode.com/problems/ransom-note/solutions/1671552/1ms-100-easy-explanation-java-solution/
