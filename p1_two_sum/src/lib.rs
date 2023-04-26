@@ -6,14 +6,10 @@ impl Solution {
         let mut map: HashMap<i32, i32> = HashMap::new();
 
         for (i, curr) in nums.iter().enumerate() {
-            let diff: i32 = target - curr;
-
-            if let Some(idx) = map.get(&diff) {
-                return vec![*idx, i as i32];
-            } else {
-                map.insert(*curr, i as i32);
+            match map.get(&(target - curr)) {
+                Some(&idx) => return vec![idx, i as i32],
+                None => map.insert(*curr, i as i32),
             };
-
         }
         vec![]
     }
