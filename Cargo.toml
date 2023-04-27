@@ -16,4 +16,5 @@ members = [
     "p876_middle_of_the_linked_list",
     "p383_ransom_note",
     "p1_two_sum",
+    "p392_is_subsequence",
 ]

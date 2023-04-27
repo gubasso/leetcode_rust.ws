@@ -31,6 +31,7 @@ You could also rewrite this in another way where we have a "is First written "fl
 
 Time complexity: O(n log n)
     - log n because of the initial sorting
+Space complexity: O(n)
 
 ```
 pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
