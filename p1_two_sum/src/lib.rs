@@ -1,16 +1,37 @@
 use std::collections::HashMap;
 
+// Hashmap solution:
+// pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
+//     let mut map: HashMap<i32, i32> = HashMap::new();
+//
+//     for (i, curr) in nums.iter().enumerate() {
+//         match map.get(&(target - curr)) {
+//             Some(&idx) => return vec![idx, i as i32],
+//             None => map.insert(*curr, i as i32),
+//         };
+//     }
+//     vec![]
+// }
+
 struct Solution;
 impl Solution {
     pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
-        let mut map: HashMap<i32, i32> = HashMap::new();
+        let mut left: usize = 0;
+        let mut right: usize = nums.len()-1;
+        let mut ordered: Vec<(usize, &i32)> = nums.iter().enumerate().collect();
+        ordered.sort_by(|a,b| a.1.cmp(&b.1));
 
-        for (i, curr) in nums.iter().enumerate() {
-            match map.get(&(target - curr)) {
-                Some(&idx) => return vec![idx, i as i32],
-                None => map.insert(*curr, i as i32),
-            };
+        for _e in &ordered {
+            let sum = ordered[left].1 + ordered[right].1;
+            if sum == target {
+                return vec![ordered[left].0 as i32, ordered[right].0 as i32];
+            } else if sum < target {
+                left += 1;
+            } else if sum > target {
+                right -= 1;
+            }
         }
+
         vec![]
     }
 }
