@@ -1,3 +1,5 @@
+// Time complexity: O(n)
+// Space complexity: O(1)
 struct Solution;
 impl Solution {
     pub fn is_subsequence(s: String, t: String) -> bool {
@@ -7,11 +9,8 @@ impl Solution {
         let s_vec: Vec<char> = s.chars().collect();
 
         while it < t.len() && is < s.len() {
-            if t_vec[it] == s_vec[is] {
-                it += 1; is += 1;
-            } else {
-                it += 1
-            }
+            if t_vec[it] == s_vec[is] { is += 1; };
+            it += 1
         };
         is == s.len()
     }
