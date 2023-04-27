@@ -17,4 +17,5 @@ members = [
     "p383_ransom_note",
     "p1_two_sum",
     "p392_is_subsequence",
+    "icc_reverse_string",
 ]

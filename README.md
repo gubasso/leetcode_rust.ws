@@ -13,6 +13,8 @@
 
 ## General
 
+`icc_....`: interview crash course problems
+
 issue tracker / todo list: https://github.com/driusan/bug
 
 test command:
