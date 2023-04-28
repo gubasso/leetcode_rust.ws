@@ -18,4 +18,5 @@ members = [
     "p1_two_sum",
     "p392_is_subsequence",
     "icc_reverse_string",
+    "icc_squares_of_a_sorted_array",
 ]
