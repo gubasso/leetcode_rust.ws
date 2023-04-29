@@ -19,4 +19,5 @@ members = [
     "p392_is_subsequence",
     "icc_reverse_string",
     "icc_squares_of_a_sorted_array",
+    "p713_subarray_product_less_than_k",
 ]
