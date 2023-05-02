@@ -22,4 +22,5 @@ members = [
     "p713_subarray_product_less_than_k",
     "icc_maximum_average_subarray_i",
     "icc_max_consecutive_ones_iii",
+    "p2270_number_of_ways_to_split_array",
 ]
