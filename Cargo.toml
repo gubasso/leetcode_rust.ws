@@ -23,4 +23,6 @@ members = [
     "icc_maximum_average_subarray_i",
     "icc_max_consecutive_ones_iii",
     "p2270_number_of_ways_to_split_array",
+    "icc_running_sum_of_1d_array",
+    "icc_minimum_value_to_get_positive_step_by_step_sum",
 ]
