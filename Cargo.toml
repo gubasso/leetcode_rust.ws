@@ -32,4 +32,5 @@ members = [
     "icc_missing_number",
     "icc_counting_elements",
     "p2248_intersection_of_multiple_arrays",
+    "p1941_check_if_all_characters_have_equal_number_of_occurrences",
 ]
