@@ -31,4 +31,5 @@ members = [
     "icc_check_if_the_sentence_is_pangram",
     "icc_missing_number",
     "icc_counting_elements",
+    "p2248_intersection_of_multiple_arrays",
 ]
