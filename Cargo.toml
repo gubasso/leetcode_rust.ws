@@ -27,4 +27,5 @@ members = [
     "icc_minimum_value_to_get_positive_step_by_step_sum",
     "p557_reverse_words_in_a_string_iii",
     "p917_reverse_only_letters",
+    "p2351_first_letter_to_appear_twice",
 ]

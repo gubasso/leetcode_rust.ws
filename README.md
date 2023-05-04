@@ -14,6 +14,15 @@
 
 ## Todo
 
+- [ ] [283. Move Zeroes](https://leetcode.com/problems/move-zeroes/): two-pointers
+- [ ] [2000. Reverse Prefix of Word](https://leetcode.com/problems/reverse-prefix-of-word/): two-pointers
+- [ ] [209. Minimum Size Subarray Sum](https://leetcode.com/problems/minimum-size-subarray-sum/): sliding window
+- [ ] [1456. Maximum Number of Vowels in a Substring of Given Length](https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/): sliding window
+- [ ] [1208. Get Equal Substrings Within Budget](https://leetcode.com/problems/get-equal-substrings-within-budget/): sliding window
+- [ ] [1732. Find the Highest Altitude](https://leetcode.com/problems/find-the-highest-altitude/): Prefix sum
+- [ ] [724. Find Pivot Index](https://leetcode.com/problems/find-pivot-index/): Prefix sum
+- [ ] [303. Range Sum Query - Immutable](https://leetcode.com/problems/range-sum-query-immutable/): Prefix sum
+
 ## General
 
 `icc_....`: interview crash course problems
