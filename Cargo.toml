@@ -30,4 +30,5 @@ members = [
     "p2351_first_letter_to_appear_twice",
     "icc_check_if_the_sentence_is_pangram",
     "icc_missing_number",
+    "icc_counting_elements",
 ]
