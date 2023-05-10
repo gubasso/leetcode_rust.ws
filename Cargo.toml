@@ -35,4 +35,5 @@ members = [
     "p1941_check_if_all_characters_have_equal_number_of_occurrences",
     "p560_subarray_sum_equals_k",
     "p1248_count_number_of_nice_subarrays",
+    "icc_find_players_with_zero_or_one_losses",
 ]
