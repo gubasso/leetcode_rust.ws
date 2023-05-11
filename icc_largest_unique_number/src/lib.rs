@@ -19,7 +19,6 @@ impl Solution {
         }
 
         for n in first_time {
-            // println!("ans: {ans}, n: {n}");
             ans = i32::max(ans, n);
         }
 
