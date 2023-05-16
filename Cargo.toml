@@ -38,4 +38,5 @@ members = [
     "icc_find_players_with_zero_or_one_losses",
     "icc_largest_unique_number",
     "icc_maximum_number_of_balloons",
+    "p49_group_anagrams",
 ]
