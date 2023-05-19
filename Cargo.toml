@@ -40,4 +40,5 @@ members = [
     "icc_maximum_number_of_balloons",
     "p49_group_anagrams",
     "p2260_minimum_consecutive_cards_to_pick_up",
+    "p2342_max_sum_of_a_pair_with_equal_sum_of_digits",
 ]
