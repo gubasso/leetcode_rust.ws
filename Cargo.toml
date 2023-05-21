@@ -43,4 +43,5 @@ members = [
     "p2342_max_sum_of_a_pair_with_equal_sum_of_digits",
     "p2352_equal_row_and_column_pairs",
     "icc_ransom_note",
+    "icc_jewels_and_stones",
 ]
