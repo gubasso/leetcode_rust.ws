@@ -45,4 +45,5 @@ members = [
     "icc_ransom_note",
     "icc_jewels_and_stones",
     "icc_longest_substring_without_repeating_characters",
+    "icc_middle_of_the_linked_list",
 ]
