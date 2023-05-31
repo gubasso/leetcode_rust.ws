@@ -43,6 +43,7 @@ fn list_to_vec(list: &Option<Box<ListNode>>) -> Vec<i32> {
 }
 
 struct Solution;
+
 impl Solution {
     pub fn swap_pairs(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
         let mut dummy = Some(Box::new(ListNode::new(0)));
@@ -62,10 +63,10 @@ impl Solution {
                 prev = &mut prev.as_mut().unwrap().next;
             }
         }
+
         dummy.unwrap().next
     }
 }
-
 
 #[cfg(test)]
 mod tests {
@@ -76,6 +77,13 @@ mod tests {
         let list = vec_to_list(&vec![1,2,3,4]);
         let result = Solution::swap_pairs(list);
         assert_eq!(list_to_vec(&result), vec![2,1,4,3]);
+    }
+
+    #[test]
+    fn t4() {
+        let list = vec_to_list(&vec![1,2,3,4,5]);
+        let result = Solution::swap_pairs(list);
+        assert_eq!(list_to_vec(&result), vec![2,1,4,3,5]);
     }
 
     #[test]
