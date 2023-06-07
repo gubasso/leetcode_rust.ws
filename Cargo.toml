@@ -48,4 +48,5 @@ members = [
     "icc_middle_of_the_linked_list",
     "icc_remove_duplicates_from_sorted_list",
     "p24_swap_nodes_in_pairs",
+    "p2130_maximum_twin_sum_of_a_linked_list",
 ]

@@ -65,7 +65,7 @@ impl Solution {
 - into_values to directly map the values to the output iterator, instead of into_iter().map(...), and to take ownership of the hash map values => the string instances we get as input are the same instances that we return in the output.
 "
 
-```
+```rust
 use std::collections::HashMap;
 
 const N_LETTERS: usize = (b'z' - b'a' + 1) as _;
