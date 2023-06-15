@@ -51,4 +51,5 @@ members = [
     "p2130_maximum_twin_sum_of_a_linked_list",
     "p206_reverse_linked_list",
     "icc_reverse_linked_list_ii",
+    "icc_k_radius_subarray_averages",
 ]
