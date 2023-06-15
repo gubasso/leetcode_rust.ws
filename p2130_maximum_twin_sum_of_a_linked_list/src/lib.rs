@@ -29,10 +29,11 @@ fn vec_to_list(vec: &Vec<i32>) -> Option<Box<ListNode>> {
 struct Solution;
 impl Solution {
     pub fn pair_sum(head: Option<Box<ListNode>>) -> i32 {
+        let mut sum = 0;
         let mut l1 = Some(Box::new(ListNode::new(0)));
         l1.as_mut().unwrap().next = head;
 
-        // aceitar a solucao com o clone na l2
+        // accept the solution that clones list 2
 
         let mut slow = &l1.as_ref().unwrap().next;
         let mut fast = &l1.as_ref().unwrap().next;
@@ -44,14 +45,32 @@ impl Solution {
 
         let mut l2 = Some(Box::new(ListNode::new(0)));
         l2.as_mut().unwrap().next = slow.clone();
-        println!("{l2:?}");
+        let mut curr = &mut l2.as_mut().unwrap().next;
+        let mut prev: Option<Box<ListNode>> = None;
 
+        // invert l2
+        while let Some(node) = curr {
 
+        }
 
+        let mut l1p = &mut l1.as_mut().unwrap().next;
+        let mut l2p = &mut l2.as_mut().unwrap().next;
+        println!("l1: {:?}", l1p);
+        println!("l2: {:?}", l2p);
 
-
-
-        0
+        while let Some(n_l2) = l2p {
+            if let Some(n_l1) = l1p {
+                println!("sum: {:?}", sum);
+                println!("val 1: {:?}", n_l1.val);
+                println!("val 2: {:?}", n_l2.val);
+                sum = sum.max(n_l1.val + n_l2.val);
+                // println!("nl1: {:?}", n_l1);
+                // println!("nl2: {:?}", n_l2);
+            }
+            l1p = &mut l1p.as_mut().unwrap().next;
+            l2p = &mut l2p.as_mut().unwrap().next;
+        }
+        sum
     }
 }
 
