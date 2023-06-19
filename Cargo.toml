@@ -53,4 +53,5 @@ members = [
     "icc_reverse_linked_list_ii",
     "icc_k_radius_subarray_averages",
     "p20_valid_parentheses",
+    "p1047_remove_all_adjacent_duplicates_in_string",
 ]
