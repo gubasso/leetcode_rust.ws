@@ -52,4 +52,5 @@ members = [
     "p206_reverse_linked_list",
     "icc_reverse_linked_list_ii",
     "icc_k_radius_subarray_averages",
+    "p20_valid_parentheses",
 ]
