@@ -55,4 +55,5 @@ members = [
     "p20_valid_parentheses",
     "p1047_remove_all_adjacent_duplicates_in_string",
     "p844_backspace_string_compare",
+    "p71_simplify_path",
 ]
