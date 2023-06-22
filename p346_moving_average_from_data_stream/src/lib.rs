@@ -3,26 +3,28 @@ use std::collections::VecDeque;
 struct MovingAverage {
     size: i32,
     values: VecDeque<i32>,
+    sum: i32,
 }
 
 impl MovingAverage {
 
     fn new(size: i32) -> Self {
-        MovingAverage { size, values: VecDeque::new() }
+        MovingAverage {
+            size,
+            values: VecDeque::new(),
+            sum: 0,
+        }
     }
 
     fn next(&mut self, val: i32) -> f64 {
         self.values.push_back(val);
         let mut n = self.values.len() as i32;
         if n > self.size {
-            self.values.pop_front();
+            self.sum -= self.values.pop_front().unwrap();
             n = self.size;
         }
-        let mut sum: f64 = 0.0;
-        for v in self.values.iter() {
-            sum += *v as f64;
-        }
-        ((sum / n as f64) * 100000.0).round() / 100000.0
+        self.sum += val;
+        ((self.sum as f64 / n as f64) * 100000.0).round() / 100000.0
     }
 }
 
