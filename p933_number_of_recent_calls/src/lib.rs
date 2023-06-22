@@ -18,12 +18,8 @@ impl RecentCounter {
     fn ping(&mut self, t: i32) -> i32 {
         self.deque.push_back(t);
 
-        while let Some(&call) = self.deque.front() {
-            if call < t - 3000 {
-                self.deque.pop_front();
-            } else {
-                break;
-            }
+        while self.deque.front().is_some() && *self.deque.front().unwrap() < t - 3000 {
+            self.deque.pop_front();
         }
 
         self.deque.len() as i32
