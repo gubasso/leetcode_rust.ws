@@ -29,12 +29,24 @@ use std::rc::Rc;
 use std::cell::RefCell;
 struct Solution;
 impl Solution {
+
     pub fn max_depth(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
         if root.is_none() { return 0; }
-        let root_node = root.unwrap();
-        let left = Solution::max_depth(root_node.borrow().left.clone());
-        let right = Solution::max_depth(root_node.borrow().right.clone());
-        1 + left.max(right)
+        let mut ans = 0;
+        let mut stack = Vec::from([(root.unwrap(), 1)]);
+
+        while let Some((node_rc, depth)) = stack.pop() {
+            ans = ans.max(depth);
+            let mut node_rc_mut = node_rc.borrow_mut();
+            if let Some(left) = node_rc_mut.left.take() {
+                stack.push((left, depth + 1));
+            }
+            if let Some(right) = node_rc_mut.right.take() {
+                stack.push((right, depth + 1));
+            }
+        }
+
+        ans
     }
 }
 
