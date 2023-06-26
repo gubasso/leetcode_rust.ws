@@ -63,4 +63,5 @@ members = [
     "p239_sliding_window_maximum",
     "p1438_longest_continuous_subarray_with_absolute_diff_less_than_or_equal_to_limit",
     "p496_next_greater_element_i",
+    "p901_online_stock_span",
 ]
