@@ -66,4 +66,5 @@ members = [
     "p901_online_stock_span",
     "p104_maximum_depth_of_binary_tree",
     "p112_path_sum",
+    "p1448_count_good_nodes_in_binary_tree",
 ]
