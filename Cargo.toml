@@ -68,4 +68,5 @@ members = [
     "p112_path_sum",
     "p1448_count_good_nodes_in_binary_tree",
     "p100_same_tree",
+    "p236_lowest_common_ancestor_of_a_binary_tree",
 ]
