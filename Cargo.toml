@@ -71,4 +71,5 @@ members = [
     "p236_lowest_common_ancestor_of_a_binary_tree",
     "p111_minimum_depth_of_binary_tree",
     "p1026_maximum_difference_between_node_and_ancestor",
+    "p543_diameter_of_binary_tree",
 ]
