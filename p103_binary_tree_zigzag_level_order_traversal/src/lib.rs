@@ -22,8 +22,8 @@ use std::rc::Rc;
 use std::cell::RefCell;
 
 use std::collections::VecDeque;
-use std::ops::{Index,IndexMut};
 
+use std::ops::{Index,IndexMut};
 impl Index<usize> for TreeNode {
     type Output = Option<Rc<RefCell<TreeNode>>>;
     fn index(&self, index: usize) -> &Self::Output {
@@ -81,15 +81,15 @@ impl Solution {
                 let node = node.borrow();
                 in_vec.push(node.val);
 
-                // for leaf in [&node.left, &node.right].into_iter().flatten() {
-                //     queue.push_back(Rc::clone(leaf));
-                // }
-
                 for leaf in [&node.left, &node.right] {
                     if let Some(nd) = leaf {
                         queue.push_back(Rc::clone(nd));
                     }
                 }
+
+                // for leaf in [&node.left, &node.right].into_iter().flatten() {
+                //     queue.push_back(Rc::clone(leaf));
+                // }
 
             }
 
