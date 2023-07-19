@@ -73,4 +73,5 @@ members = [
     "p1026_maximum_difference_between_node_and_ancestor",
     "p199_binary_tree_right_side_view",
     "p515_find_largest_value_in_each_tree_row",
+    "p1302_deepest_leaves_sum",
 ]
