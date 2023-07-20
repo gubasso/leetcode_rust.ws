@@ -76,4 +76,5 @@ members = [
     "p1302_deepest_leaves_sum",
     "p103_binary_tree_zigzag_level_order_traversal",
     "p938_range_sum_of_bst",
+    "p530_minimum_absolute_difference_in_bst",
 ]
