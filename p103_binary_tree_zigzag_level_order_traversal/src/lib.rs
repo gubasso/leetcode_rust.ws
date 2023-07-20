@@ -87,9 +87,9 @@ impl Solution {
                     }
                 }
 
-                // for leaf in [&node.left, &node.right].into_iter().flatten() {
-                //     queue.push_back(Rc::clone(leaf));
-                // }
+                for leaf in [&node.left, &node.right].into_iter().flatten() {
+                    queue.push_back(Rc::clone(leaf));
+                }
 
             }
 
