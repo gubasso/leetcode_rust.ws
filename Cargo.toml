@@ -78,4 +78,5 @@ members = [
     "p938_range_sum_of_bst",
     "p530_minimum_absolute_difference_in_bst",
     "p98_validate_binary_search_tree",
+    "p701_insert_into_a_binary_search_tree",
 ]
