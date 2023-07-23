@@ -79,4 +79,6 @@ members = [
     "p530_minimum_absolute_difference_in_bst",
     "p98_validate_binary_search_tree",
     "p701_insert_into_a_binary_search_tree",
+    "p270_closest_binary_search_tree_value",
+    "p547_number_of_provinces",
 ]
