@@ -83,4 +83,5 @@ members = [
     "p547_number_of_provinces",
     "p200_number_of_islands",
     "p1466_reorder_routes_to_make_all_paths_lead_to_the_city_zero",
+    "p841_keys_and_rooms",
 ]
