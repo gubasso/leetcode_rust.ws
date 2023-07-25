@@ -85,4 +85,5 @@ members = [
     "p1466_reorder_routes_to_make_all_paths_lead_to_the_city_zero",
     "p841_keys_and_rooms",
     "p1557_minimum_number_of_vertices_to_reach_all_nodes",
+    "p1971_find_if_path_exists_in_graph",
 ]
