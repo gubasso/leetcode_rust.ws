@@ -87,4 +87,5 @@ members = [
     "p1557_minimum_number_of_vertices_to_reach_all_nodes",
     "p1971_find_if_path_exists_in_graph",
     "p323_number_of_connected_components_in_an_undirected_graph",
+    "p695_max_area_of_island",
 ]
