@@ -88,4 +88,5 @@ members = [
     "p1971_find_if_path_exists_in_graph",
     "p323_number_of_connected_components_in_an_undirected_graph",
     "p695_max_area_of_island",
+    "p2368_reachable_nodes_with_restrictions",
 ]
