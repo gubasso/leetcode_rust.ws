@@ -89,4 +89,5 @@ members = [
     "p323_number_of_connected_components_in_an_undirected_graph",
     "p695_max_area_of_island",
     "p2368_reachable_nodes_with_restrictions",
+    "p1091_shortest_path_in_binary_matrix",
 ]
