@@ -90,4 +90,5 @@ members = [
     "p695_max_area_of_island",
     "p2368_reachable_nodes_with_restrictions",
     "p1091_shortest_path_in_binary_matrix",
+    "p863_all_nodes_distance_k_in_binary_tree",
 ]
