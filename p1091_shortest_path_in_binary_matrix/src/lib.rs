@@ -2,7 +2,7 @@ struct Solution;
 use std::collections::{HashSet, VecDeque};
 impl Solution {
 
-    fn neighbours(row: i32, col: i32, m: i32, n: i32) -> Vec<(i32,i32)> {
+    fn get_valid_neighbours(row: i32, col: i32, m: i32, n: i32) -> Vec<(i32,i32)> {
         let mut all_coords = Vec::new();
         let is_valid = |(i,j): (i32, i32)| -> bool {
             i >= 0 && j >= 0 && i < m && j < n
@@ -47,7 +47,7 @@ impl Solution {
             if (i, j) == (m-1, n-1) {
                 return steps;
             }
-            for (ni, nj) in Self::neighbours(i,j,m,n) {
+            for (ni, nj) in Self::get_valid_neighbours(i,j,m,n) {
                 if grid[ni as usize][nj as usize] == 0 && seen.insert((ni,nj)) {
                     queue.push_back((ni, nj, steps + 1));
                 }
