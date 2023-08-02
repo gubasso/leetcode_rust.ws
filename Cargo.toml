@@ -91,4 +91,5 @@ members = [
     "p2368_reachable_nodes_with_restrictions",
     "p1091_shortest_path_in_binary_matrix",
     "p863_all_nodes_distance_k_in_binary_tree",
+    "p542_01_matrix",
 ]
