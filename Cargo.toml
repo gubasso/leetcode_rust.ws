@@ -92,4 +92,5 @@ members = [
     "p1091_shortest_path_in_binary_matrix",
     "p863_all_nodes_distance_k_in_binary_tree",
     "p542_01_matrix",
+    "p1293_shortest_path_in_a_grid_with_obstacles_elimination",
 ]
