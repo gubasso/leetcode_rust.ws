@@ -97,4 +97,5 @@ members = [
     "p1926_nearest_exit_from_entrance_in_maze",
     "p909_snakes_and_ladders_v2",
     "p752_open_the_lock",
+    "p399_evaluate_division",
 ]
