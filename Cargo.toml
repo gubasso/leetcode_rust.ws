@@ -98,4 +98,5 @@ members = [
     "p909_snakes_and_ladders_v2",
     "p752_open_the_lock",
     "p399_evaluate_division",
+    "p433_minimum_genetic_mutation",
 ]
