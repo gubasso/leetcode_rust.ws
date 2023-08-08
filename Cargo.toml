@@ -99,4 +99,5 @@ members = [
     "p752_open_the_lock",
     "p399_evaluate_division",
     "p433_minimum_genetic_mutation",
+    "p1306_jump_game_iii",
 ]
