@@ -101,4 +101,5 @@ members = [
     "p433_minimum_genetic_mutation",
     "p1306_jump_game_iii",
     "p2101_detonate_the_maximum_bombs",
+    "p127_word_ladder",
 ]
