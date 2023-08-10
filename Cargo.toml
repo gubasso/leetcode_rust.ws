@@ -103,4 +103,5 @@ members = [
     "p2101_detonate_the_maximum_bombs",
     "p127_word_ladder",
     "p1046_last_stone_weight",
+    "p2208_minimum_operations_to_halve_array_sum",
 ]
