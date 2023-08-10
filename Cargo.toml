@@ -102,4 +102,5 @@ members = [
     "p1306_jump_game_iii",
     "p2101_detonate_the_maximum_bombs",
     "p127_word_ladder",
+    "p1046_last_stone_weight",
 ]
