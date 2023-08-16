@@ -107,4 +107,5 @@ members = [
     "p295_find_median_from_data_stream",
     "p480_sliding_window_median",
     "p703_kth_largest_element_in_a_stream",
+    "p1962_remove_stones_to_minimize_the_total",
 ]
