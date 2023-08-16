@@ -106,4 +106,5 @@ members = [
     "p2208_minimum_operations_to_halve_array_sum",
     "p295_find_median_from_data_stream",
     "p480_sliding_window_median",
+    "p703_kth_largest_element_in_a_stream",
 ]
