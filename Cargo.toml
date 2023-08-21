@@ -116,4 +116,5 @@ members = [
     "p2126_destroying_asteroids",
     "p2294_partition_array_such_that_maximum_difference_is_k",
     "p502_ipo",
+    "p1481_least_number_of_unique_integers_after_k_removals",
 ]
