@@ -119,4 +119,5 @@ members = [
     "p1481_least_number_of_unique_integers_after_k_removals",
     "p881_boats_to_save_people",
     "p1323_maximum_69_number",
+    "p1710_maximum_units_on_a_truck",
 ]
