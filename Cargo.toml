@@ -115,4 +115,5 @@ members = [
     "p973_k_closest_points_to_origin",
     "p2126_destroying_asteroids",
     "p2294_partition_array_such_that_maximum_difference_is_k",
+    "p502_ipo",
 ]
