@@ -122,4 +122,5 @@ members = [
     "p1710_maximum_units_on_a_truck",
     "p1196_how_many_apples_can_you_put_into_the_basket",
     "p1338_reduce_array_size_to_the_half",
+    "p704_binary_search",
 ]
