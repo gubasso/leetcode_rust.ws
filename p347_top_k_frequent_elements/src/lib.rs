@@ -17,7 +17,7 @@ impl Solution {
                 let Reverse((min_count, _)) = heap.peek().unwrap();
                 if count >= *min_count {
                     heap.push(Reverse((count,key)));
-                    heap.pop();
+                    heap.pop(); // Some(Reverse(asld'[:]))
                 }
 
             }
