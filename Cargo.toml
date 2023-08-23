@@ -127,4 +127,5 @@ members = [
     "p2300_successful_pairs_of_spells_and_potions",
     "p35_search_insert_position",
     "p2389_longest_subsequence_with_limited_sum",
+    "p875_koko_eating_bananas",
 ]
