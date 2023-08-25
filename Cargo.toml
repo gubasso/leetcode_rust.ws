@@ -131,4 +131,5 @@ members = [
     "p1631_path_with_minimum_effort",
     "p1870_minimum_speed_to_arrive_on_time",
     "p1283_find_the_smallest_divisor_given_a_threshold",
+    "p1231_divide_chocolate",
 ]
