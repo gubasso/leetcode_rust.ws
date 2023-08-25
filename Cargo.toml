@@ -133,4 +133,5 @@ members = [
     "p1283_find_the_smallest_divisor_given_a_threshold",
     "p1231_divide_chocolate",
     "p410_split_array_largest_sum",
+    "p46_permutations",
 ]
