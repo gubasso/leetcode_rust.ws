@@ -134,4 +134,5 @@ members = [
     "p1231_divide_chocolate",
     "p410_split_array_largest_sum",
     "p46_permutations",
+    "p78_subsets",
 ]
