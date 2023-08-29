@@ -136,4 +136,5 @@ members = [
     "p46_permutations",
     "p78_subsets",
     "p77_combinations",
+    "p797_all_paths_from_source_to_target",
 ]
