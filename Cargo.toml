@@ -139,4 +139,5 @@ members = [
     "p797_all_paths_from_source_to_target",
     "p17_letter_combinations_of_a_phone_number",
     "p39_combination_sum",
+    "p52_n_queens_ii",
 ]
