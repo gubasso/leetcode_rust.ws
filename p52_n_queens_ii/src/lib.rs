@@ -1,6 +1,5 @@
-use std::collections::HashSet;
-
 struct Solution;
+use std::collections::HashSet;
 impl Solution {
 
     fn backtrack(n: i32, i: i32,
