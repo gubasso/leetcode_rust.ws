@@ -142,4 +142,5 @@ members = [
     "p52_n_queens_ii",
     "p79_word_search",
     "p217_contains_duplicate",
+    "p125_valid_palindrome",
 ]
