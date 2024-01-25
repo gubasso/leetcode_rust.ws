@@ -10,7 +10,7 @@
 
 test command:
 ```
-cargo nextest run -j 1 --no-fail-fast -p [package]
+cargo nextest run --no-fail-fast -p p125_valid_palindrome --no-capture
 clrm; cargo test -p [package] -- --test-threads 1
 clrm; cargo clippy --package [package]
 ```
