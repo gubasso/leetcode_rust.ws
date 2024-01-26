@@ -143,4 +143,5 @@ members = [
     "p79_word_search",
     "p217_contains_duplicate",
     "p125_valid_palindrome",
+    "p20_valid_parentheses_2",
 ]
