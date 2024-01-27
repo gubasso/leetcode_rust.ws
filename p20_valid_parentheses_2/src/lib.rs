@@ -1,14 +1,45 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
-}
-
 #[cfg(test)]
 mod tests {
-    use super::*;
+    struct Solution;
+
+    impl Solution {
+        pub fn is_valid(s: String) -> bool {
+            let mut stack = Vec::new();
+            for c in s.chars() {
+                match c {
+                    '(' => stack.push(')'),
+                    '{' => stack.push('}'),
+                    '[' => stack.push(']'),
+                    ')' | '}' | ']' if Some(c) != stack.pop() => return false,
+                    _ => (),
+                }
+            }
+            stack.is_empty()
+        }
+    }
 
     #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+    fn t1() {
+        let result = Solution::is_valid("()".to_string());
+        assert!(result);
     }
+
+    #[test]
+    fn t2() {
+        let result = Solution::is_valid("()[]{}".to_string());
+        assert!(result);
+    }
+
+    #[test]
+    fn t3() {
+        let result = Solution::is_valid("(]".to_string());
+        assert!(!result);
+    }
+
+    #[test]
+    fn t4() {
+        let result = Solution::is_valid("(])".to_string());
+        assert!(!result);
+    }
+
 }
