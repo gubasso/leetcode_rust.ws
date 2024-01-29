@@ -1,6 +1,5 @@
 # p20_valid_parentheses_2
 
-
 ```
 Runtime 0 ms
 Beats 100.00% of users with Rust
