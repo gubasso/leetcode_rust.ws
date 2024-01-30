@@ -147,4 +147,5 @@ members = [
     "p704_binary_search_2",
     "p74_search_a_2d_matrix_2",
     "p121_best_time_to_buy_and_sell_stock",
+    "p206_reverse_linked_list_2",
 ]
